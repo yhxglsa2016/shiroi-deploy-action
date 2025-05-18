@@ -16,7 +16,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  PNPM_VERSION: 9.x.x
   HASH_FILE: build_hash
 
 jobs:
@@ -75,7 +74,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [20.x]
+        node-version: [lts/*]
     outputs:
       sha_short: ${{ steps.store.outputs.sha_short }}
       branch: ${{ steps.store.outputs.branch }}
@@ -90,8 +89,7 @@ jobs:
       - name: Checkout LFS objects
         run: git lfs checkout
       - uses: pnpm/action-setup@v2
-        with:
-          version: ${{ env.PNPM_VERSION }}
+
       - name: Use Node.js ${{ matrix.node-version }}
         uses: actions/setup-node@v4
         with:
@@ -166,7 +164,6 @@ jobs:
           password: ${{ secrets.PASSWORD }}
           key: ${{ secrets.KEY }}
           port: ${{ secrets.PORT }}
-          script_stop: true
           script: |
             set -e
             source $HOME/.bashrc
