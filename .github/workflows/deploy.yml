@@ -77,11 +77,11 @@ jobs:
         node-version: [lts/*]
     outputs:
       sha_short: ${{ steps.store.outputs.sha_short }}
-      分支: ${{ steps.store.outputs.branch }}
+      branch: ${{ steps.store.outputs.branch }}
     steps:
       - uses: actions/checkout@v4
         with:
-          仓库: innei-dev/shiroi
+          repository: innei-dev/shiroi
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
           fetch-depth: 0
           lfs: true
