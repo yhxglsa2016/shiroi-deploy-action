@@ -98,8 +98,6 @@ jobs:
       - uses: jongwooo/next-cache@v1
       - name: Install dependencies
         run: pnpm install
-      - name: Force upgrade Next.js version
-        run: pnpm add next@15.5.7
       - name: Build project
         run: |
           sh ./ci-release-build.sh
