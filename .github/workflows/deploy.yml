@@ -77,11 +77,11 @@ jobs:
         node-version: [lts/*]
     outputs:
       sha_short: ${{ steps.store.outputs.sha_short }}
-      branch: ${{ steps.store.outputs.branch }}
+      分支: ${{ steps.store.outputs.branch }}
     steps:
       - uses: actions/checkout@v4
         with:
-          repository: innei-dev/shiroi
+          仓库: innei-dev/shiroi
           token: ${{ secrets.GH_PAT }} # `GH_PAT` is a secret that contains your PAT
           fetch-depth: 0
           lfs: true
@@ -98,6 +98,8 @@ jobs:
       - uses: jongwooo/next-cache@v1
       - name: Install dependencies
         run: pnpm install
+      - name: Force upgrade Next.js version
+        run: pnpm add next@15.5.7
       - name: Build project
         run: |
           sh ./ci-release-build.sh
