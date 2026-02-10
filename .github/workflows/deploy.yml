@@ -96,8 +96,11 @@ jobs:
           node-version: ${{ matrix.node-version }}
           cache: 'pnpm'
       - uses: jongwooo/next-cache@v1
+      
+      # 这里进行了修改，添加了 --no-frozen-lockfile 参数
       - name: Install dependencies
-        run: pnpm install
+        run: pnpm install --no-frozen-lockfile
+        
       - name: Build project
         run: |
           sh ./ci-release-build.sh
